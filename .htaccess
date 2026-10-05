@@ -1,0 +1,12 @@
+Options -Indexes
+DirectoryIndex index.php
+RewriteEngine On
+# Block obsolete files left on the server by a copy-only deployment as well.
+RewriteRule ^_service/export_local_recovery\.php$ - [L,NC]
+RewriteRule ^(?:backup|_private|_service|tests|scripts|diary-old|Dev|service|konzultace|NASADIT_DO_KORENE_WEBU_konzultace)(?:/|$) - [F,L,NC]
+RewriteRule ^js/.*\.php$ - [F,L,NC]
+RewriteRule ^scheduler/index\.html$ scheduler/index.php [END,NC]
+RewriteRule ^(?:students-old|students\ zaloha|login-old|konzultace-index-old|.*-zaloha|data-processing|add-student-form|edit-student-form|selected-student-card|homepage|homepage-inactive|site-header|header|footer|menu)\.php$ - [F,L,NC]
+RewriteRule ^(?:diaries/generate_hash|diaries/db|scheduler/db)\.php$ - [F,L,NC]
+RewriteRule ^(?:README|REVIZE|NASAZENI).*\.md$ - [F,L,NC]
+RewriteRule ^(?:htaccess|htaccess-www|design\.html)$ - [F,L,NC]

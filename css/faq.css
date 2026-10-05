@@ -1,0 +1,104 @@
+body {
+    font-family: "Vollkorn", serif;
+    margin: 2em;
+    background: var(--background-color);
+    color: #333;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+dl {
+    width: 60%;
+    max-width: 700px;
+    padding: 2em;
+    margin: 2em auto;
+    border: 1px solid var(--text-color);
+    background-color: var(--block-color);
+    box-shadow: 5px 5px;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 1em;
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px;
+}
+dt::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: normal;
+    color: #888;
+}
+dt.active::after {
+    content: "−";
+    color: #555;
+}
+dd {
+    margin-left: 1em;
+    margin-top: 0.5em;
+    display: none;
+    line-height: 1.5;
+}
+
+dd.visible {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .infoBox {
+        width: 95%; /* Use relative width */
+        max-width: 750px; /* Max width limit */
+    }
+
+    .alertBox {
+        width: 90%;
+        max-width: 550px;
+    }
+
+    .schedulerTable {
+        width: 95%;
+        max-width: 750px;
+        font-size: 12px;
+        margin: 5px auto;
+    }
+
+    .form-popup {
+        top: 1em;
+        left: 1em;
+    }
+
+    #helper-img {
+        width: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    dl {
+        width: 95%;
+        max-width: 590px;
+    }
+}
+
+@media (max-width: 480px) {
+    dl {
+        width: 95%;
+        max-width: 470px;
+    }
+}
+
+/* Very small devices (around 390px) */
+@media (max-width: 390px) {
+    html {
+        font-size: 12px;
+    }
+
+    dl {
+        width: 95%;
+        max-width: 380px;
+    }
+}

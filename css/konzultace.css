@@ -1,0 +1,213 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px dotted #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+td a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.empty {
+    background: var(--background-color);
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    background: var(--block-color);
+    border: 1px solid var(--text-color);
+    box-shadow: 5px 5px;
+    padding: 2em;
+    top: 30%;
+    left: 30%;
+    z-index: 1000;
+}
+
+h1,
+h2,
+h3 {
+    margin: 1em 2em;
+    text-align: center;
+}
+
+.infoBox {
+    width: 80%;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid var(--text-color);
+
+    box-shadow: 5px 5px;
+}
+
+.ashBox {
+    background-color: rgb(178, 190, 181);
+}
+
+.blockBox {
+    background-color: var(--block-color);
+}
+
+.amberBox {
+    background-color: rgb(255, 191, 0, 0.3);
+}
+
+ul {
+    margin: 0px 1.5em;
+}
+
+li {
+    padding: 5px 0px;
+}
+
+p {
+    padding: 5px 0px;
+}
+
+#helper-bot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    text-align: center;
+    cursor: pointer;
+}
+
+#helper-img {
+    width: 80px;
+    height: auto;
+}
+
+#chat-box {
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    width: 260px;
+    background: #fff9c4;
+    border: 2px solid #fbc02d;
+    border-radius: 10px;
+    padding: 1em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: sans-serif;
+}
+
+#chat-box.hidden {
+    display: none;
+}
+
+.chat-question {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.chat-options button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.3em;
+    padding: 0.4em;
+    background-color: #fdd835;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-options button:hover {
+    background-color: #ffee58;
+}
+
+@media (max-width: 768px) {
+    .infoBox {
+        width: 95%; /* Use relative width */
+        max-width: 750px; /* Max width limit */
+    }
+
+    .alertBox {
+        width: 90%;
+        max-width: 550px;
+    }
+
+    .schedulerTable {
+        width: 95%;
+        max-width: 750px;
+        font-size: 12px;
+        margin: 5px auto;
+    }
+
+    .form-popup {
+        top: 1em;
+        left: 1em;
+    }
+
+    #helper-img {
+        width: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .infoBox {
+        width: 95%;
+        max-width: 550px;
+    }
+
+    .alertBox {
+        width: 90%;
+        max-width: 450px;
+    }
+
+    .schedulerTable {
+        width: 95%;
+        max-width: 550px;
+    }
+}
+
+@media (max-width: 480px) {
+    .infoBox {
+        width: 95%;
+        max-width: 450px;
+    }
+
+    .alertBox {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .schedulerTable {
+        width: 95%;
+        max-width: 450px;
+    }
+}
+
+/* Very small devices (around 390px) */
+@media (max-width: 390px) {
+    html {
+        font-size: 15px;
+    }
+
+    .infoBox {
+        width: 95%;
+        max-width: 390px;
+    }
+
+    .alertBox {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .schedulerTable {
+        width: 95%;
+        max-width: 390px;
+        overflow-x: auto; /* ensure horizontal scroll if needed */
+        display: block;
+    }
+}

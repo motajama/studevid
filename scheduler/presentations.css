@@ -1,0 +1,244 @@
+.presentations-main {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1rem 1rem 2.5rem 1rem;
+}
+
+.presentations-card {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.presentations-card--hero {
+    text-align: left;
+}
+
+.presentations-card--hero p:last-child {
+    margin-bottom: 0;
+}
+
+.presentations-card--footer p {
+    margin: 0;
+}
+
+.presentations-card--form {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subject-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.subject-list li {
+    margin: 0;
+}
+
+.subject-list-link {
+    display: block;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line-color);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.08s ease;
+}
+
+.subject-list-link:hover,
+.subject-list-link:focus-visible {
+    border-color: var(--link-color);
+    background: #f7faff;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.subject-list-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.subject-list-meta {
+    display: block;
+    color: var(--muted-color);
+    font-size: 0.92rem;
+}
+
+.presentations-table {
+    min-width: 720px;
+}
+
+.presentations-table th,
+.presentations-table td {
+    vertical-align: top;
+}
+
+.slots {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.slot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    text-decoration: none;
+    border: 1px solid transparent;
+    min-height: 38px;
+}
+
+.slot small {
+    font-size: 0.84em;
+    opacity: 0.9;
+}
+
+.slot.free,
+.slot.slot-free {
+    background: #e8f5ec;
+    color: #155b37;
+    border-color: #cfe6d6;
+}
+
+.slot.free:hover,
+.slot.free:focus-visible,
+.slot.slot-free:hover,
+.slot.slot-free:focus-visible {
+    background: #dbefe2;
+    color: #11492c;
+    text-decoration: none;
+}
+
+.slot.occupied,
+.slot.slot-occupied {
+    background: #f5e3e6;
+    color: #8a2130;
+    border-color: #ebc8cf;
+}
+
+.slot.slot-current {
+    background: #fff2cc;
+    color: #7a5a00;
+    border-color: #ead48a;
+    font-weight: 600;
+}
+
+.presentation-form .formRow {
+    margin-bottom: 1rem;
+}
+
+.presentation-form label {
+    display: block;
+    margin-bottom: 0.45rem;
+}
+
+.presentation-form input[type="text"],
+.presentation-form input[type="email"] {
+    width: 100%;
+}
+
+.form-actions-centered {
+    justify-content: center;
+}
+
+.change-link-box {
+    margin: 1rem 0 1.25rem 0;
+    padding: 0.9rem 1rem;
+    border: 1px dashed var(--line-color);
+    border-radius: 12px;
+    background: #fff;
+    word-break: break-word;
+}
+
+.ok-message {
+    margin-top: 0.9rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #cfe6d6;
+    border-radius: 10px;
+    background: #edf8f1;
+    color: #17663a;
+}
+
+.teacher-applet {
+    margin-top: 1.5rem;
+}
+
+.teacher-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.teacher-table th,
+.teacher-table td {
+    border: 1px solid #ddd;
+    padding: 0.55rem 0.65rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.copy-email,
+.copy-all {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .presentations-main {
+        padding: 0.8rem 0.8rem 2rem 0.8rem;
+    }
+
+    .subject-list-link {
+        padding: 0.9rem 0.95rem;
+    }
+
+    .presentations-table {
+        min-width: 620px;
+    }
+
+    .slot {
+        font-size: 0.86rem;
+        min-height: 36px;
+        padding: 0.42rem 0.62rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .presentations-main {
+        padding: 0.7rem 0.7rem 1.5rem 0.7rem;
+    }
+
+    .presentations-card {
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .subject-list {
+        gap: 0.6rem;
+    }
+
+    .subject-list-link {
+        border-radius: 10px;
+    }
+
+    .presentations-table {
+        min-width: 560px;
+    }
+
+    .form-actions-centered .button-link,
+    .form-actions-centered a.button-link {
+        width: 100%;
+    }
+}

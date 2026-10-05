@@ -1,0 +1,292 @@
+.progress-table {
+    width: 100%;
+    margin: 0.5em 0;
+    border-collapse: collapse;
+}
+
+.progress-table td {
+    text-align: center;
+    padding: 0.3em;
+    font-size: 0.8em;
+    border: 1px dotted var(--text-color);
+    cursor: pointer;
+}
+
+.progress-table td.inactive {
+    background-color: #eee;
+    color: #999;
+}
+
+.progress-table td.active {
+    background-color: var(--link-color);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* NOT STARTED */
+.not_started_active {
+    background-color: #b22222; /* cihlová červená */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.not_started_inactive {
+    background-color: #f4cccc;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+/* DATA COLLECTION */
+.data_collection_active {
+    background-color: #d2691e; /* tmavší oranžová */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.data_collection_inactive {
+    background-color: #f8d7b0;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+/* DRAFT */
+.draft_active {
+    background-color: #f4a300; /* zlatá oranžová */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.draft_inactive {
+    background-color: #ffe6b3;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+/* SUBMITTED */
+.submitted_active {
+    background-color: #b3c100; /* olivově zelená */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.submitted_inactive {
+    background-color: #e5f1a8;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+/* REVIEW */
+.review_active {
+    background-color: #40a070; /* zelenomodrá */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.review_inactive {
+    background-color: #c9e8dc;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+/* ACCEPTED */
+.accepted_active {
+    background-color: #3399cc; /* nebesky modrá */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.accepted_inactive {
+    background-color: #d0ecf9;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+/* PRINTED */
+.printed_active {
+    background-color: #87cefa; /* světlejší modrá */
+    color: whitesmoke;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.printed_inactive {
+    background-color: #e6f7ff;
+    color: #777;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: none;
+}
+
+.tl-year {
+    padding: 1em;
+}
+
+.diary-accordion {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.diary-item {
+    border: 1px solid var(--line-color);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.55);
+    overflow: hidden;
+}
+
+.diary-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    cursor: pointer;
+    padding: 0.95rem 1rem;
+    background: #f8f5ee;
+}
+
+.diary-summary::-webkit-details-marker {
+    display: none;
+}
+
+.diary-summary::after {
+    content: "▾";
+    margin-left: auto;
+    font-size: 0.95rem;
+}
+
+.diary-item[open] .diary-summary::after {
+    content: "▴";
+}
+
+.diary-summary-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.diary-summary-meta {
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.diary-panel {
+    padding: 0 1rem 1rem 1rem;
+}
+
+@media (max-width: 640px) {
+    .diary-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .diary-summary-meta {
+        white-space: normal;
+    }
+}
+
+.presentation-accordion {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.presentation-subject,
+.presentation-year {
+    border: 1px solid var(--line-color);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.55);
+    overflow: hidden;
+}
+
+.presentation-subject-summary,
+.presentation-year-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 0.95rem 1rem;
+}
+
+.presentation-subject-summary {
+    background: #f8f5ee;
+}
+
+.presentation-year-summary {
+    background: #fcfaf5;
+    border-top: 1px solid #ece5d9;
+}
+
+.presentation-subject-summary::-webkit-details-marker,
+.presentation-year-summary::-webkit-details-marker {
+    display: none;
+}
+
+.presentation-subject-summary::after,
+.presentation-year-summary::after {
+    content: "▾";
+    margin-left: auto;
+}
+
+.presentation-subject[open] > .presentation-subject-summary::after,
+.presentation-year[open] > .presentation-year-summary::after {
+    content: "▴";
+}
+
+.presentation-subject-body,
+.presentation-year-body {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.presentation-year {
+    margin-top: 0.75rem;
+}
+
+@media (max-width: 640px) {
+    .presentation-subject-summary,
+    .presentation-year-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* DIARY TIMELINE */
+
+#timeline-menu .accordion h4 {
+    margin: 0;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #e6dece;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+#timeline-menu .accordion > div {
+    padding: 0.45rem 0.2rem 0.75rem 0.2rem;
+}
+
+#timeline-menu .accordion ul {
+    margin: 0;
+    padding-left: 0.4rem;
+}
+
+#timeline-menu .entry-link {
+    display: inline-block;
+    padding: 0.3rem 0;
+    line-height: 1.35;
+}
+
+#timeline-menu .entry-link[data-private="true"] {
+    opacity: 0.78;
+}

@@ -1,0 +1,12 @@
+<?php
+require_once dirname(__DIR__) . '/_private/presentations.php';
+$id=input_id($_GET,'id');
+try { $subject=presentation_subject($pdo,$id); } catch (DomainException $e) { app_error(404,$e->getMessage()); }
+$stmt=$pdo->prepare('SELECT id,presentation_date,note FROM presentation_event_dates WHERE subject_id=? AND is_active=1 AND presentation_date>=CURRENT_DATE ORDER BY presentation_date');
+$stmt->execute([$id]); $dates=$stmt->fetchAll();
+$stmt=$pdo->prepare('SELECT date_id,slot_number,presenter,responsible_name FROM presentation_registrations WHERE status="active" AND date_id IN (SELECT id FROM presentation_event_dates WHERE subject_id=? AND is_active=1 AND presentation_date>=CURRENT_DATE)');
+$stmt->execute([$id]); $occupied=[]; foreach($stmt->fetchAll() as $r) $occupied[(int)$r['date_id']][(int)$r['slot_number']]=$r;
+$globalCssPath='/studevid/css/global.css'; $dashboardCssPath=null; $extraCssFiles=['presentations.css']; $loadJquery=true; $loadChartJs=false; $loadDesignJs=false;
+?><!doctype html><html lang="en"><head><meta charset="utf-8"><title><?= h($subject['name']) ?> – prezentace</title><?php require dirname(__DIR__).'/_private/views/header.php'; ?></head><body><main class="presentations-main">
+<section class="standardCard presentations-card"><h1 class="centered"><?= h($subject['name']) ?><?= $subject['university'] ? ' ('.h($subject['university']).')' : '' ?></h1><p class="centered">Vyberte free slot a uložte si odkaz pro pozdější změnu nebo zrušení.</p></section>
+<section class="standardCard presentations-card"><table class="schedulerTable presentations-table"><thead><tr><th>Date</th><th>Note</th><th>Sloty (<?= (int)$subject['slots_per_date'] ?>)</th></tr></thead><tbody><?php foreach($dates as $d): ?><tr><th><?= h(date('j. n. Y',strtotime($d['presentation_date']))) ?></th><td><?= h($d['note'] ?? '') ?></td><td><div class="slots"><?php for($i=1;$i<=(int)$subject['slots_per_date'];$i++): ?><?php if(isset($occupied[(int)$d['id']][$i])): $p=$occupied[(int)$d['id']][$i]; ?><span class="slot occupied"><?= $i ?>. <?= h($p['presenter']) ?> (<?= h($p['responsible_name']) ?>)</span><?php else: ?><a class="slot free" href="add.php?date_id=<?= (int)$d['id'] ?>&slot=<?= $i ?>"><?= $i ?>. free</a><?php endif; ?><?php endfor; ?></div></td></tr><?php endforeach; ?></tbody></table><?php if (!$dates): ?><p class="muted centered">Pro tento subject nejsou vypsány budoucí dates.</p><?php endif; ?></section><p><a href="index.php">← Back</a></p></main></body></html>
