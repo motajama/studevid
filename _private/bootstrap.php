@@ -126,10 +126,38 @@ function json_response(mixed $data): never {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR); exit;
 }
-function booking_token(int $id, string $email): string {
+function booking_secret(): string {
     $secret = getenv('STUDENTS_BOOKING_SECRET');
+    if (is_string($secret) && strlen($secret) >= 32) return $secret;
+
+    $path = getenv('STUDENTS_BOOKING_SECRET_FILE');
+    if (!is_string($path) || $path === '') $path = __DIR__ . '/.booking-secret';
+    if (is_link($path)) app_error(503, 'Rezervace jsou dočasně nedostupné.');
+    $oldUmask = umask(0077);
+    try { $file = @fopen($path, 'c+'); }
+    finally { umask($oldUmask); }
+    if ($file === false) app_error(503, 'Rezervace jsou dočasně nedostupné.');
+
+    $secret = false;
+    try {
+        if (flock($file, LOCK_EX)) {
+            $stored = stream_get_contents($file);
+            if ($stored !== false) {
+                $secret = trim($stored);
+                if ($secret === '') {
+                    $secret = bin2hex(random_bytes(32));
+                    rewind($file);
+                    if (fwrite($file, $secret) !== strlen($secret) || !fflush($file)) $secret = false;
+                }
+            }
+            flock($file, LOCK_UN);
+        }
+    } finally { fclose($file); }
     if (!is_string($secret) || strlen($secret) < 32) app_error(503, 'Rezervace jsou dočasně nedostupné.');
-    return hash_hmac('sha256', $id . ':' . strtolower(trim($email)), $secret);
+    return $secret;
+}
+function booking_token(int $id, string $email): string {
+    return hash_hmac('sha256', $id . ':' . strtolower(trim($email)), booking_secret());
 }
 function booking_slot(PDO $pdo, int $id, string $token): array {
     if (!preg_match('/\A[a-f0-9]{64}\z/', $token)) app_error(404, 'Rezervace nebyla nalezena.');

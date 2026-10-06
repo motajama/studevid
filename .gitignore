@@ -2,4 +2,5 @@
 .env.*
 !.env.example
 _private/runtime/
+_private/.booking-secret
 .DS_Store

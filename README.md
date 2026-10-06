@@ -19,6 +19,13 @@ This directory is a sanitized distribution copy. It contains no production datab
 4. Deploy this directory as `/studevid` (or update the absolute paths in the shared header and web server configuration).
 5. Configure PHP sessions and HTTPS, then create teacher/student accounts using the application’s existing account workflow.
 
+Bookings use `STUDENTS_BOOKING_SECRET` when set to at least 32 characters.
+Otherwise, the application creates a random key in `_private/.booking-secret`
+on the first booking. Make `_private/` writable by PHP and preserve this file
+across deployments and backups. On a read-only deployment, set
+`STUDENTS_BOOKING_SECRET` or point `STUDENTS_BOOKING_SECRET_FILE` to a writable
+private file. Changing or losing the key invalidates existing cancellation links.
+
 ## Module migrations
 
 - `consultation_scheduler.sql` – consultation slot activation
